@@ -1,80 +1,164 @@
-/* A simple css reset */
-body,
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    /* The Font Family- Really important!! */
-    font-family: Arial, sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-/* reset for images to ensure they ar 100% of the parent container width */
-img {
-    width: 100%;
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #0b0d17;
+    color: #f5f5ff;
 }
 
-/* The hero section styling- use your OWN Hero Image URL here */
+/* Hero section */
 .hero {
-    background-image: url('images/download.png');
-    height: 25vh;
-    background-size: cover;
-    background-position: center;
+    min-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
     text-align: center;
-    position: relative;
+    background:
+        radial-gradient(ellipse at top, #6335a8 0%, transparent 65%),
+        linear-gradient(135deg, #11152b, #090b14);
+    border-bottom: 1px solid #ffffff15;
 }
 
-/* BIG text styling for the hero section text */
 .hero-text {
-    font-size: 4em;
-    font-weight: bold;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -3px;
+    padding: 40px 20px;
+    background: linear-gradient(90deg, #c084fc, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-/* nice big font on a banner style background */
-.topic-title{
-    color: white;
-    font-size: 2em;
-    padding: 0.1em 3em;
-    background-color: rgb(71, 71, 71);
+/* Topic sections */
+.topic {
+    max-width: 1150px;
+    margin: 55px auto;
+    padding: 0 25px;
 }
 
-/* Three column grid with a nice big gap */
-.topic-content{
+.topic-title {
+    margin-bottom: 25px;
+    padding: 16px 22px;
+    background: linear-gradient(100deg, #171c32, #111525);
+    border: 1px solid #ffffff12;
+    border-left: 4px solid #a855f7;
+    border-radius: 10px;
+}
+
+.topic-title h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* Project layout */
+.topic-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6em;
-    /* bring the whole section in off the sides of the page */
-    width: 70%;
-    /* top margin of 3em and center right/left */
-    margin: 3em auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
 }
 
-/* Styling for the individual topic cards rounded edges background color and a drop shadow */
-.topic-card{
-    background-color: rgb(71, 71, 71);
-    color: white;
-    padding: 1em;
-    border-radius: 0.5em;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+.topic-card {
+    min-width: 0;
+    overflow: hidden;
+    background: #131728;
+    border: 1px solid #ffffff12;
+    border-radius: 14px;
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
 }
 
-/* Styling for the topic card titles */
-.topic-card-text{
-    font-size: 1.5em;
-    margin-bottom: 0.5em;
-    /* center align text */
+.topic-card:hover {
+    transform: translateY(-6px);
+    border-color: #a855f777;
+    box-shadow: 0 12px 35px #00000040;
+}
+
+.topic-card img {
+    width: 100%;
+    height: 230px;
+    display: block;
+    object-fit: cover;
+    background: #1c2238;
+    transition: transform 0.4s ease;
+}
+
+.topic-card:hover img {
+    transform: scale(1.04);
+}
+
+.topic-card-text {
+    margin: 0;
+    padding: 20px;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+/* Links */
+.topic-card a {
+    display: inline-block;
+    color: #c4b5fd;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.topic-card a:hover {
+    color: #60a5fa;
+}
+
+/* Footer */
+.footer {
+    margin-top: 80px;
+    padding: 28px 20px;
     text-align: center;
+    color: #9ca3b8;
+    font-size: 0.85rem;
+    background: #080a12;
+    border-top: 1px solid #ffffff12;
 }
 
+/* Smaller screens */
+@media (max-width: 800px) {
+    .topic-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-/* Styling for a footer section to take a bit of spcae at the bottom of the page */
-.footer{
-    background-color: rgb(71, 71, 71);
-    color: white;
-    text-align: right;
-    padding: 3em 3em;
+    .topic {
+        margin: 40px auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .topic-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 230px;
+    }
+
+    .hero-text {
+        letter-spacing: -1px;
+    }
+
+    .topic {
+        padding: 0 16px;
+    }
+
+    .topic-card img {
+        height: 250px;
+    }
 }
